@@ -15,7 +15,7 @@ function App() {
     axios
     .get("https://crio-location-selector.onrender.com/countries")
     .then((res) => setCountries(res.data))
-    .catch((err) => console.error("Error fetching countries:", err));
+    .catch((err) => console.error("error fetching countries:", err));
   }, []);
 
   useEffect(() => {
@@ -28,7 +28,7 @@ function App() {
       setCities([]);
       setSelectedCity("");
     })
-    .catch((err) => console.error("Error fetching states:", err));
+    .catch((err) => console.error("error fetching states:", err));
   }
   }, [selectedCountry]);
 
@@ -40,7 +40,7 @@ function App() {
         setCities(res.data);
         setSelectedCity("");
       })
-      .catch((err) => console.error("Error fetching states:", err));
+      .catch((err) => console.error("error fetching states:", err));
     }
   }, [selectedCountry, selectedState])
 
