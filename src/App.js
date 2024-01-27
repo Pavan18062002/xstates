@@ -13,41 +13,41 @@ function App() {
 
   useEffect(() => {
     axios
-    .get("https://crio-location-selector.onrender.com/countries")
-    .then((res) => {
-      setCountries(res.data);
-      console.log("Countries:", res.data);
-  })
-    .catch((err) => console.error("Error fetching countries:", err));
+      .get("https://crio-location-selector.onrender.com/countries")
+      .then((res) => {
+        setCountries(res.data);
+        console.log("Countries:", res.data);
+      })
+      .catch((err) => console.error("Error fetching countries:", err));
   }, []);
 
   useEffect(() => {
     if (selectedCountry) {
-    axios
-    .get(`https://crio-location-selector.onrender.com/country=${selectedCountry}/states`)
-    .then((res) => {
-      setStates(res.data);
-      setSelectedState("");
-      setCities([]);
-      setSelectedCity("");
-      console.log("States:", res.data)
-    })
-    .catch((err) => console.error("Error fetching states:", err));
-  }
+      axios
+        .get(`https://crio-location-selector.onrender.com/country=${selectedCountry}/states`)
+        .then((res) => {
+          setStates(res.data);
+          setSelectedState("");
+          setCities([]);
+          setSelectedCity("");
+          console.log("States:", res.data);
+        })
+        .catch((err) => console.error("Error fetching states:", err));
+    }
   }, [selectedCountry]);
 
   useEffect(() => {
-    if (selectedCountry && selectedState){
+    if (selectedCountry && selectedState) {
       axios
-      .get(`https://crio-location-selector.onrender.com/country=${selectedCountry}/state=${selectedState}/cities`)
-      .then((res) => {
-        setCities(res.data);
-        setSelectedCity("");
-        console.log("Cities:", res.data)
-      })
-      .catch((err) => console.error("Error fetching states:", err));
+        .get(`https://crio-location-selector.onrender.com/country=${selectedCountry}/state=${selectedState}/cities`)
+        .then((res) => {
+          setCities(res.data);
+          setSelectedCity("");
+          console.log("Cities:", res.data);
+        })
+        .catch((err) => console.error("Error fetching cities:", err));
     }
-  }, [selectedCountry, selectedState])
+  }, [selectedCountry, selectedState]);
 
 
 
@@ -107,7 +107,7 @@ function App() {
       </div>
       {selectedCity && (
         <h2 className='result'>
-          You selected <span className='highlight'>{selectedCity}</span>
+          You selected <span className='highlight'>{selectedCity},</span>
           <span className='fade'>
             {" "}
             {selectedState}, {selectedCountry}
