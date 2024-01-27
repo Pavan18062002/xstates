@@ -15,7 +15,7 @@ function App() {
     axios
     .get("https://crio-location-selector.onrender.com/countries")
     .then((res) => setCountries(res.data))
-    .catch((err) => console.error("error fetching countries:", err));
+    .catch((err) => console.error("Error fetching countries:", err));
   }, []);
 
   useEffect(() => {
