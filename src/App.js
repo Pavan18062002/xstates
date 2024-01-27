@@ -28,7 +28,7 @@ function App() {
       setCities([]);
       setSelectedCity("");
     })
-    .catch((err) => console.error("error fetching states:", err));
+    .catch((err) => console.error("Error fetching states:", err));
   }
   }, [selectedCountry]);
 
@@ -40,7 +40,7 @@ function App() {
         setCities(res.data);
         setSelectedCity("");
       })
-      .catch((err) => console.error("error fetching states:", err));
+      .catch((err) => console.error("Error fetching states:", err));
     }
   }, [selectedCountry, selectedState])
 
@@ -49,11 +49,12 @@ function App() {
   return (
     <div className='city-selector'>
       <h1>Select Location</h1>
-      <div className='dropdowns'>
+      <div className="dropdowns">
         <select
         value={selectedCountry}
         onChange={(e) => setSelectedCountry(e.target.value)}
-        className='dropdown'>
+        className='dropdown'
+        >
           <option value="" disabled>
             Select Country
           </option>
@@ -69,6 +70,7 @@ function App() {
          value={selectedState}
          onChange={(e) => setSelectedState(e.target.value)}
          className='dropdown'
+         disabled={!selectedCountry}
          >
           <option value="" disabled>
             Select State
@@ -85,6 +87,8 @@ function App() {
          value={selectedCity}
          onChange={(e) => setSelectedCity(e.target.value)}
          className='dropdown'
+         disabled={!selectedState}
+         
          >
           <option value="" disabled>
             Select City
@@ -100,7 +104,7 @@ function App() {
       </div>
       {selectedCity && (
         <h2 className='result'>
-          You selected <span className='highlight'>{selectedCity}</span>
+          You selected <span className='highlight'>{selectedCity},</span>
           <span className='fade'>
             {" "}
             {selectedState}, {selectedCountry}
