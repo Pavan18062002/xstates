@@ -14,8 +14,11 @@ function App() {
   useEffect(() => {
     axios
     .get("https://crio-location-selector.onrender.com/countries")
-    .then((res) => setCountries(res.data))
-    .catch((err) => console.error("error fetching countries:", err));
+    .then((res) => {
+      setCountries(res.data);
+      console.log("Countries:", res.data);
+  })
+    .catch((err) => console.error("Error fetching countries:", err));
   }, []);
 
   useEffect(() => {
@@ -27,8 +30,9 @@ function App() {
       setSelectedState("");
       setCities([]);
       setSelectedCity("");
+      console.log("States:", res.data)
     })
-    .catch((err) => console.error("error fetching states:", err));
+    .catch((err) => console.error("Error fetching states:", err));
   }
   }, [selectedCountry]);
 
@@ -39,8 +43,9 @@ function App() {
       .then((res) => {
         setCities(res.data);
         setSelectedCity("");
+        console.log("Cities:", res.data)
       })
-      .catch((err) => console.error("error fetching states:", err));
+      .catch((err) => console.error("Error fetching states:", err));
     }
   }, [selectedCountry, selectedState])
 
@@ -102,7 +107,7 @@ function App() {
       </div>
       {selectedCity && (
         <h2 className='result'>
-          You selected <span className='highlight'>{selectedCity},</span>
+          You selected <span className='highlight'>{selectedCity}</span>
           <span className='fade'>
             {" "}
             {selectedState}, {selectedCountry}
