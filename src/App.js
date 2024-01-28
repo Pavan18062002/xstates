@@ -63,9 +63,9 @@ function App() {
           <option value="" disabled>
             Select Country
           </option>
-          {countries.map((country) => {
+          {countries.map((country, index) => {
             return (
-              <option key={country} value={country}>
+              <option key={index} value={country}>
                 {country}
               </option>
             );
